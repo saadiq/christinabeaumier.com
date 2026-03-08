@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import PressCard from '../components/PressCard.astro';
+import type { PressItem } from '../types';
+import pressData from '../content/press.json';
+
+const press = pressData as PressItem[];
+---
+
+<BaseLayout title="Press — Christina Beaumier" description="Press coverage and media mentions featuring Christina Beaumier.">
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <PageHeader title="Press" />
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {press.map((item, i) => (
+          <div class="animate-on-scroll" style={`transition-delay: ${(i % 3) * 100}ms`}>
+            <PressCard item={item} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

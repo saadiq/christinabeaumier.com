@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import TimelineItem from '../components/TimelineItem.astro';
+import type { Experience, Education, Award } from '../types';
+import experienceData from '../content/experience.json';
+import educationData from '../content/education.json';
+import awardsData from '../content/awards.json';
+
+const experience = experienceData as Experience[];
+const education = educationData as Education[];
+const awards = awardsData as Award[];
+---
+
+<BaseLayout title="Resume — Christina Beaumier" description="Professional experience and career history of Christina Beaumier, technology executive and product leader.">
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <PageHeader title="Resume" />
+
+      <!-- Experience -->
+      <div class="mt-12">
+        <div class="animate-on-scroll">
+          <SectionHeading title="Experience" />
+        </div>
+        <div class="mt-6">
+          {experience.map((exp, i) => (
+            <div class="animate-on-scroll" style={`transition-delay: ${i * 80}ms`}>
+              <TimelineItem item={exp} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="mt-16">
+        <div class="animate-on-scroll">
+          <SectionHeading title="Education" />
+        </div>
+        <div class="mt-6 space-y-4">
+          {education.map((e, i) => (
+            <div class="animate-on-scroll flex items-start gap-3" style={`transition-delay: ${i * 100}ms`}>
+              <span class="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-gold-500"></span>
+              <div>
+                <span class="font-semibold text-warm-gray-900">{e.degree}</span>
+                <span class="text-warm-gray-600">, {e.institution}</span>
+                {e.location && <span class="text-warm-gray-500"> — {e.location}</span>}
+                {e.year && (
+                  <span class="ml-2 rounded-full bg-cream-200 px-2.5 py-0.5 text-xs font-medium text-warm-gray-600">{e.year}</span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Awards -->
+      <div class="mt-16">
+        <div class="animate-on-scroll">
+          <SectionHeading title="Awards & Recognition" />
+        </div>
+        <div class="mt-6 space-y-4">
+          {awards.map((a, i) => (
+            <div class="animate-on-scroll flex items-start gap-3" style={`transition-delay: ${i * 100}ms`}>
+              <span class="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-gold-500"></span>
+              <div>
+                <span class="font-semibold text-warm-gray-900">{a.title}</span>
+                {a.category && <span class="text-warm-gray-600"> — {a.category}</span>}
+                <span class="ml-2 rounded-full bg-cream-200 px-2.5 py-0.5 text-xs font-medium text-warm-gray-600">{a.year}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Activities -->
+      <div class="mt-16">
+        <div class="animate-on-scroll">
+          <SectionHeading title="Activities & Interests" />
+        </div>
+        <p class="animate-on-scroll text-warm-gray-700">
+          Parent advocate, neurodiversity education supporter, aspiring real estate investor, multilingual (conversational French/Spanish), extensive international travel across four continents and 40+ countries.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

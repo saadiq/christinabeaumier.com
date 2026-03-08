@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import StrengthCard from '../components/StrengthCard.astro';
+import type { Strength, Award, Education } from '../types';
+import strengthsData from '../content/strengths.json';
+import awardsData from '../content/awards.json';
+import educationData from '../content/education.json';
+
+const strengths = strengthsData as Strength[];
+const awards = awardsData as Award[];
+const education = educationData as Education[];
+---
+
+<BaseLayout title="Christina Beaumier — Technology Executive & Product Leader">
+  <Hero />
+
+  <!-- Key Strengths -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <div class="animate-on-scroll">
+        <SectionHeading title="Key Strengths" />
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2">
+        {strengths.map((s, i) => (
+          <div class="animate-on-scroll" style={`transition-delay: ${i * 100}ms`}>
+            <StrengthCard title={s.title} description={s.description} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section class="bg-cream-100 py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <div class="animate-on-scroll">
+        <SectionHeading title="Awards & Recognition" />
+      </div>
+      <ul class="space-y-4">
+        {awards.map((a, i) => (
+          <li class="animate-on-scroll flex items-start gap-3" style={`transition-delay: ${i * 100}ms`}>
+            <span class="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-gold-500"></span>
+            <div>
+              <span class="font-semibold text-warm-gray-900">{a.title}</span>
+              {a.category && (
+                <span class="text-warm-gray-600"> — {a.category}</span>
+              )}
+              <span class="ml-2 rounded-full bg-cream-200 px-2.5 py-0.5 text-xs font-medium text-warm-gray-600">
+                {a.year}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <div class="animate-on-scroll">
+        <SectionHeading title="Education" />
+      </div>
+      <div class="grid gap-6 sm:grid-cols-3">
+        {education.map((e, i) => (
+          <div
+            class="animate-on-scroll rounded-xl border border-cream-200 bg-white p-6 shadow-sm"
+            style={`transition-delay: ${i * 100}ms`}
+          >
+            <p class="font-semibold text-warm-gray-900">{e.degree}</p>
+            <p class="mt-1 text-sm text-warm-gray-600">{e.institution}</p>
+            {e.location && <p class="text-sm text-warm-gray-500">{e.location}</p>}
+            {e.year && (
+              <span class="mt-2 inline-block rounded-full bg-cream-200 px-2.5 py-0.5 text-xs font-medium text-warm-gray-600">
+                {e.year}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
