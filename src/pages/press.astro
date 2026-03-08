@@ -8,11 +8,12 @@ import pressData from '../content/press.json';
 const press = pressData as PressItem[];
 ---
 
-<BaseLayout title="Press — Christina Beaumier" description="Press coverage and media mentions featuring Christina Beaumier.">
+<BaseLayout title="Press — Christina Beaumier" description="Press coverage of Christina Beaumier in AdWeek, Wall Street Journal, AdExchanger, and AdAge on programmatic TV, advanced advertising, and media technology.">
   <section class="py-16 sm:py-20">
     <div class="mx-auto max-w-5xl px-6">
       <PageHeader title="Press" />
 
+      <h2 class="sr-only">Press Coverage</h2>
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {press.map((item, i) => (
           <div class="animate-on-scroll" style={`transition-delay: ${(i % 3) * 100}ms`}>
