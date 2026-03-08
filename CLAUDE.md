@@ -14,7 +14,7 @@ No test or lint setup exists.
 
 ## Architecture
 
-Astro 5 static site (SSG) — a professional portfolio for Christina Beaumier. Deploys to GitHub Pages (base path: `/christinabeaumier.com`) and Cloudflare Pages.
+Astro 5 static site (SSG) — a professional portfolio for Christina Beaumier. Deploys to GitHub Pages (base path: `/christinabeaumier.com`).
 
 ### Data Flow
 
@@ -40,7 +40,11 @@ Tailwind CSS 4 with custom theme tokens defined via `@theme` in `global.css`:
 
 Links use `import.meta.env.BASE_URL` for base path support. Active page detection compares against `Astro.url.pathname`. Mobile menu toggle uses JS in Header.astro.
 
+### Redirects
+
+Old Squarespace paths are redirected via Astro's `redirects` config in `astro.config.mjs`:
+- `/bio` → `/` , `/about` → `/resume`, `/new-page` → `/panels`, `/images` → `/interviews`
+
 ### Deployment
 
-- `astro.config.mjs`: site=`https://saadiq.github.io`, base=`/christinabeaumier.com`
-- `wrangler.jsonc`: Cloudflare Pages config pointing to `./dist`
+- **GitHub Pages only** — `astro.config.mjs`: site=`https://saadiq.github.io`, base=`/christinabeaumier.com`
