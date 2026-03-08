@@ -7,6 +7,15 @@
     ]
   },
   {
+    "company": "Proximic by Comscore",
+    "parentCompany": "Contract",
+    "location": "New York",
+    "roles": [
+      { "title": "Strategic Advisor", "period": "Jun 2025–Dec 2025" },
+      { "title": "Head of Product (Interim)", "period": "Apr 2025–Jun 2025" }
+    ]
+  },
+  {
     "company": "ekoz.ai",
     "location": "New York",
     "roles": [
