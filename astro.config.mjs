@@ -4,14 +4,13 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://saadiq.github.io',
-  base: '/christinabeaumier.com',
+  site: 'https://christinabeaumier.com',
   output: 'static',
   redirects: {
-    '/bio': '/christinabeaumier.com/',
-    '/about': '/christinabeaumier.com/resume',
-    '/new-page': '/christinabeaumier.com/panels',
-    '/images': '/christinabeaumier.com/interviews',
+    '/bio': '/',
+    '/about': '/resume',
+    '/new-page': '/panels',
+    '/images': '/interviews',
   },
   integrations: [sitemap()],
   vite: {
