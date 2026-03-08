@@ -11,9 +11,20 @@ import educationData from '../content/education.json';
 const strengths = strengthsData as Strength[];
 const awards = awardsData as Award[];
 const education = educationData as Education[];
+
+const siteUrl = Astro.site?.origin ?? 'https://christinabeaumier.com';
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Christina Beaumier',
+  jobTitle: 'Chief Product Officer',
+  worksFor: { '@type': 'Organization', name: 'EnFi, Inc' },
+  url: siteUrl,
+  sameAs: ['https://linkedin.com/in/christinabeaumier'],
+};
 ---
 
-<BaseLayout title="Christina Beaumier — Technology Executive & Product Leader">
+<BaseLayout title="Christina Beaumier — Technology Executive & Product Leader" jsonLd={personSchema}>
   <Hero />
 
   <!-- Key Strengths -->
