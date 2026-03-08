@@ -1,11 +1,25 @@
 [
   {
+    "company": "EnFi, Inc",
+    "location": "New York",
+    "roles": [
+      { "title": "Chief Product Officer", "period": "2024–Present" }
+    ]
+  },
+  {
+    "company": "ekoz.ai",
+    "location": "New York",
+    "roles": [
+      { "title": "Co-Founder", "period": "2024–Present" }
+    ]
+  },
+  {
     "company": "Microsoft / Xandr",
-    "parentCompany": "Acquired from AT&T",
+    "parentCompany": "Acquired by Microsoft in 2022",
     "location": "New York",
     "roles": [
       { "title": "Senior Vice President, Product and Technology", "period": "2018–2023" },
-      { "title": "Chief of Staff to CEO", "period": "2017–2018" }
+      { "title": "VP, Chief of Staff to CEO", "period": "2017–2018" }
     ]
   },
   {
