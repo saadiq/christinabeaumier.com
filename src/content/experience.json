@@ -1,0 +1,50 @@
+[
+  {
+    "company": "Microsoft / Xandr",
+    "parentCompany": "Acquired from AT&T",
+    "location": "New York",
+    "roles": [
+      { "title": "Senior Vice President, Product and Technology", "period": "2018–2023" },
+      { "title": "Chief of Staff to CEO", "period": "2017–2018" }
+    ]
+  },
+  {
+    "company": "Google",
+    "location": "New York",
+    "roles": [
+      { "title": "Strategic Partner Lead, Global Partnerships", "period": "2016–2017" }
+    ]
+  },
+  {
+    "company": "Xaxis, WPP",
+    "location": "New York",
+    "roles": [
+      { "title": "Senior Vice President, Xaxis Media Group", "period": "2015–2016" },
+      { "title": "Vice President, Product Development", "period": "2013–2015" },
+      { "title": "Vice President, Global Client Development", "period": "2011–2013" },
+      { "title": "Director, Strategic Engagements", "period": "2010–2011" }
+    ]
+  },
+  {
+    "company": "Millward Brown Optimor, WPP",
+    "location": "New York",
+    "roles": [
+      { "title": "Associate Director", "period": "2009–2010" }
+    ]
+  },
+  {
+    "company": "Barclays Capital",
+    "location": "New York / London",
+    "roles": [
+      { "title": "Associate, Investment Banking", "period": "2008" },
+      { "title": "MBA Intern, Investment Banking (Lehman Brothers)", "period": "2007" }
+    ]
+  },
+  {
+    "company": "U.S. Peace Corps",
+    "location": "Burkina Faso",
+    "roles": [
+      { "title": "Peace Corps Volunteer", "period": "2004–2006" }
+    ]
+  }
+]
