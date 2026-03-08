@@ -39,12 +39,14 @@ export interface PanelItem {
   date: string;
   location?: string;
   role?: string;
+  url?: string;
 }
 
 export interface InterviewItem {
   title: string;
   source: string;
   date: string;
+  url?: string;
 }
 
 export interface PresentationItem {
@@ -52,4 +54,5 @@ export interface PresentationItem {
   event: string;
   date: string;
   location?: string;
+  url?: string;
 }

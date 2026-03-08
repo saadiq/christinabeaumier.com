@@ -29,7 +29,7 @@ const years = Object.keys(grouped).sort((a, b) => Number(b) - Number(a));
           <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {grouped[year].map((item, i) => (
               <div class="animate-on-scroll" style={`transition-delay: ${(i % 3) * 100}ms`}>
-                <EventCard event={item.event} title={item.title} date={item.date} location={item.location} role={item.role} />
+                <EventCard event={item.event} title={item.title} date={item.date} location={item.location} role={item.role} url={item.url} />
               </div>
             ))}
           </div>

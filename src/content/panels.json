@@ -3,66 +3,77 @@
     "event": "Advertising Week",
     "title": "What it Takes to Win in the Next Era of TV",
     "date": "September 23, 2019",
-    "location": "New York, NY"
+    "location": "New York, NY",
+    "url": "http://newyork.advertisingweek.com/schedule/-hulu-seminar-2019-09-23-1630"
   },
   {
     "event": "Department of Justice Public Workshop",
     "title": "The Future of Advertising: Trends/Predictions",
     "date": "May 2, 2019",
-    "location": "Washington, DC"
+    "location": "Washington, DC",
+    "url": "https://www.justice.gov/atr/public-workshop-competition-television-and-digital-advertising"
   },
   {
     "event": "VideoNuze Video Ad Summit",
     "title": "Connected TVs Take Center Stage: What Does it All Mean?",
-    "date": "May 29, 2019"
+    "date": "May 29, 2019",
+    "url": "https://www.videonuze.com/article/why-connected-tvs-will-shift-more-ad-spending-videos"
   },
   {
     "event": "Women's Leadership Forum @ AppNexus",
     "title": "Advertising's Role in Gender Equality",
-    "date": "October 11, 2018"
+    "date": "October 11, 2018",
+    "url": "https://www.youtube.com/watch?v=MflzwbP4Y2g"
   },
   {
     "event": "MediaPost's Marketing Politics",
     "title": "Advanced TV And Cherry Picking The Next Media Buy",
     "date": "January 20, 2016",
-    "location": "Washington, DC"
+    "location": "Washington, DC",
+    "url": "http://www.mediapost.com/marketing-politics/agenda/"
   },
   {
     "event": "Shift // 2015 Programmatic Video and TV Summit (VideoNuze)",
     "title": "How Programmatic Video Is Redefining the Agency of the Future",
     "date": "December 1, 2015",
-    "location": "New York, NY"
+    "location": "New York, NY",
+    "url": "http://www.videonuze.com/article/what-s-the-agency-s-role-in-the-programmatic-video-future-shift-video-"
   },
   {
     "event": "Beet Retreat 2015",
     "title": "The Buy-side of Programmatic TV",
     "date": "November 11–13, 2015",
     "location": "Fort Lauderdale, FL",
-    "role": "Moderator"
+    "role": "Moderator",
+    "url": "http://www.beet.tv/retreat15transform"
   },
   {
     "event": "Beet Retreat 2015",
     "title": "The Sell-side of Programmatic TV",
     "date": "November 11–13, 2015",
-    "location": "Fort Lauderdale, FL"
+    "location": "Fort Lauderdale, FL",
+    "url": "http://www.beet.tv/retreat15transform"
   },
   {
     "event": "Future of TV Advertising Canada",
     "title": "The Future of Programmatic TV Trading in Canada",
     "date": "May 21, 2015",
-    "location": "Toronto, ON"
+    "location": "Toronto, ON",
+    "url": "https://www.xaxis.com/events/view/future-tv-advertising-forum-canada"
   },
   {
     "event": "MediaPost's Outfront Forum",
     "title": "Upfront 2020–2021",
     "date": "May 2015",
-    "location": "New York, NY"
+    "location": "New York, NY",
+    "url": "http://www.mediapost.com/outfrontforum/agenda/"
   },
   {
     "event": "AdExchanger's Programmatic IO",
     "title": "Addressing Today's Video Opportunity",
     "date": "April 16, 2015",
-    "location": "San Francisco, CA"
+    "location": "San Francisco, CA",
+    "url": "http://programmatic.io/2015sf/"
   },
   {
     "event": "OMMA Real-Time Buying",
@@ -74,49 +85,57 @@
     "event": "VideoNuze Online Advertising Summit",
     "title": "Programmatic Advertising from the Buyers' Side: Where Do the Real Benefits Lie?",
     "date": "June 25, 2014",
-    "location": "New York, NY"
+    "location": "New York, NY",
+    "url": "http://videosummit2014.videonuze.com/june2014/program"
   },
   {
     "event": "DMW Video: Future of Television",
     "title": "Multi-Screen Advertising Measurement: What are the Video Metrics of the Future?",
     "date": "September 18, 2013",
-    "location": "New York, NY"
+    "location": "New York, NY",
+    "url": "http://dmwvideo.com/2013/agenda/"
   },
   {
     "event": "VideoNuze Online Advertising Summit",
     "title": "The Art and Science of Audience Targeting: Optimizing the Video Ad Opportunity",
     "date": "June 4, 2013",
-    "location": "New York, NY"
+    "location": "New York, NY",
+    "url": "http://videosummit2013.videonuze.com/june2013/program"
   },
   {
     "event": "Mobile Media Summit",
     "title": "I Scream, We Scream for Multi Screen",
     "date": "April 2, 2013",
-    "location": "Santa Monica, CA"
+    "location": "Santa Monica, CA",
+    "url": "http://newhost.mobilemediasummit.com/losangeles/agenda"
   },
   {
     "event": "OMMA Programmatic Display",
     "title": "Facebook's FBX: The Year Zero View",
     "date": "March 18, 2013",
-    "location": "San Francisco, CA"
+    "location": "San Francisco, CA",
+    "url": "http://www.mediapost.com/ommaprogrammatic/2013/3/"
   },
   {
     "event": "Digital Hollywood Media Summit",
     "title": "Hyper Targeting: Ad Networks, Ad Serving and Ad Targeting",
     "date": "March 6, 2013",
     "location": "New York, NY",
-    "role": "Moderator"
+    "role": "Moderator",
+    "url": "http://prime.digitalhollywood.com/13MediaSummit/Sum13-Wed6.html"
   },
   {
     "event": "Beet Retreat 2013",
-    "title": "Panel Participation",
+    "title": "A Summit of Digital Media Leaders",
     "date": "February 1–2, 2013",
-    "location": "Vieques, PR"
+    "location": "Vieques, PR",
+    "url": "http://www.beet.tv/2012/10/beetpost.html"
   },
   {
     "event": "Digital Hollywood",
     "title": "Advertising Accountability: Metrics and Analytics around Video, Social Media, Broadband and Mobile",
     "date": "April 30, 2012",
-    "location": "Marina Del Ray, CA"
+    "location": "Marina Del Ray, CA",
+    "url": "http://prime.digitalhollywood.com/LASpring12Agenda.html"
   }
 ]
