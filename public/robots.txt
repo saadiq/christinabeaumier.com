@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://christinabeaumier.com/sitemap-index.xml
