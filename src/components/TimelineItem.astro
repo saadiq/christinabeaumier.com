@@ -1,0 +1,38 @@
+---
+import type { Experience } from '../types';
+
+interface Props {
+  item: Experience;
+}
+
+const { item } = Astro.props;
+---
+
+<div class="group/timeline relative pl-8 pb-10 last:pb-0">
+  <!-- Connector line -->
+  <div class="absolute top-2 left-[7px] bottom-0 w-px bg-cream-200 group-last/timeline:hidden"></div>
+  <!-- Dot -->
+  <div class="absolute top-2 left-0 h-[15px] w-[15px] rounded-full border-[3px] border-gold-500 bg-cream-50"></div>
+
+  <div>
+    <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      <h3 class="text-lg font-semibold text-warm-gray-900">{item.company}</h3>
+      {item.location && (
+        <span class="text-sm text-warm-gray-500">{item.location}</span>
+      )}
+    </div>
+    {item.parentCompany && (
+      <p class="text-sm text-warm-gray-500">{item.parentCompany}</p>
+    )}
+    <ul class="mt-2 space-y-1.5">
+      {item.roles.map((role) => (
+        <li class="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+          <span class="text-warm-gray-700">{role.title}</span>
+          <span class="rounded-full bg-cream-200 px-2.5 py-0.5 text-xs font-medium text-warm-gray-600">
+            {role.period}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

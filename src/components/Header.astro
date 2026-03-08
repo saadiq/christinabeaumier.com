@@ -1,0 +1,87 @@
+---
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const navItems = [
+  { label: 'Bio', href: '/' },
+  { label: 'Resume', href: '/resume' },
+  { label: 'Press', href: '/press' },
+  { label: 'Panels', href: '/panels' },
+  { label: 'Interviews', href: '/interviews' },
+  { label: 'Presentations', href: '/presentations' },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-cream-200 bg-cream-50/90 backdrop-blur-md">
+  <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <a href="/" class="text-lg font-semibold tracking-tight text-warm-gray-900 transition-colors hover:text-gold-600">
+      Christina Beaumier
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden gap-1 md:flex">
+      {navItems.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            class:list={[
+              'rounded-md px-3 py-2 text-sm font-medium transition-colors',
+              currentPath === href
+                ? 'bg-cream-200 text-warm-gray-900'
+                : 'text-warm-gray-600 hover:bg-cream-100 hover:text-warm-gray-900',
+            ]}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-btn"
+      class="inline-flex items-center justify-center rounded-md p-2 text-warm-gray-600 hover:bg-cream-100 hover:text-warm-gray-900 md:hidden"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div id="mobile-menu" class="hidden border-t border-cream-200 md:hidden">
+    <ul class="space-y-1 px-4 py-3">
+      {navItems.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            class:list={[
+              'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
+              currentPath === href
+                ? 'bg-cream-200 text-warm-gray-900'
+                : 'text-warm-gray-600 hover:bg-cream-100 hover:text-warm-gray-900',
+            ]}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  function handleMobileMenu(e: Event) {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const expanded = btn?.getAttribute('aria-expanded') === 'true';
+    btn?.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden');
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    btn?.removeEventListener('click', handleMobileMenu);
+    btn?.addEventListener('click', handleMobileMenu);
+  });
+</script>
