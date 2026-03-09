@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import EventCard from '../components/EventCard.astro';
-import VideoCard from '../components/VideoCard.astro';
 import type { PanelItem, InterviewItem, PresentationItem } from '../types';
 import panelsData from '../content/panels.json';
 import interviewsData from '../content/interviews.json';
@@ -12,65 +11,136 @@ const panels = panelsData as PanelItem[];
 const interviews = interviewsData as InterviewItem[];
 const presentations = presentationsData as PresentationItem[];
 
-// Group panels by year
-const grouped = panels.reduce<Record<string, PanelItem[]>>((acc, panel) => {
-  const year = panel.date.match(/\d{4}/)?.[0] ?? 'Other';
-  if (!acc[year]) acc[year] = [];
-  acc[year].push(panel);
-  return acc;
-}, {});
+type SpeakingType = 'panel' | 'interview' | 'presentation';
 
-const years = Object.keys(grouped).sort((a, b) => Number(b) - Number(a));
+interface SpeakingItem {
+  type: SpeakingType;
+  event: string;
+  title: string;
+  date: string;
+  location?: string;
+  role?: string;
+  url?: string;
+}
+
+const MONTHS: Record<string, number> = {
+  january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
+  july: 6, august: 7, september: 8, october: 9, november: 10, december: 11,
+};
+
+function parseDate(dateStr: string): Date {
+  // "September 23, 2019"
+  const full = dateStr.match(/^(\w+)\s+(\d{1,2})[\s,–\-\d]*(\d{4})$/);
+  if (full) return new Date(Number(full[3]), MONTHS[full[1].toLowerCase()] ?? 0, Number(full[2]));
+  // "November 2016" or "May 2015"
+  const monthYear = dateStr.match(/^(\w+)\s+(\d{4})$/);
+  if (monthYear) return new Date(Number(monthYear[2]), MONTHS[monthYear[1].toLowerCase()] ?? 0, 1);
+  // "2019"
+  const yearOnly = dateStr.match(/^(\d{4})$/);
+  if (yearOnly) return new Date(Number(yearOnly[1]), 0, 1);
+  return new Date(0);
+}
+
+const allItems: SpeakingItem[] = [
+  ...panels.map((p) => ({ type: 'panel' as const, event: p.event, title: p.title, date: p.date, location: p.location, role: p.role, url: p.url })),
+  ...interviews.map((i) => ({ type: 'interview' as const, event: i.source, title: i.title, date: i.date, url: i.url })),
+  ...presentations.map((p) => ({ type: 'presentation' as const, event: p.event, title: p.title, date: p.date, location: p.location, url: p.url })),
+];
+
+allItems.sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
 ---
 
 <BaseLayout title="Speaking & Media — Christina Beaumier" description="Speaking engagements, panel appearances, interviews, and presentations by Christina Beaumier at Cannes Lions, CES, Advertising Week, and other industry events.">
-  <!-- Panels Section -->
   <section class="py-16 sm:py-20">
     <div class="mx-auto max-w-5xl px-6">
-      <PageHeader title="Panels" />
+      <PageHeader title="Speaking & Media" />
 
-      {years.map((year) => (
-        <div class="mt-12">
-          <h2 class="animate-on-scroll mb-6 text-xl font-bold text-warm-gray-800">{year}</h2>
-          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {grouped[year].map((item, i) => (
-              <div class="animate-on-scroll" style={`transition-delay: ${(i % 3) * 100}ms`}>
-                <EventCard event={item.event} title={item.title} date={item.date} location={item.location} role={item.role} url={item.url} />
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
+      <!-- Filter Bar -->
+      <div class="mt-10 flex flex-wrap gap-2" role="group" aria-label="Filter by type">
+        <button data-filter="all" class="filter-btn active inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors bg-warm-gray-800 text-cream-50">
+          All
+        </button>
+        <button data-filter="panel" class="filter-btn inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors bg-cream-200 text-warm-gray-600 hover:bg-cream-100">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+          </svg>
+          Panels
+        </button>
+        <button data-filter="interview" class="filter-btn inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors bg-cream-200 text-warm-gray-600 hover:bg-cream-100">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+          </svg>
+          Interviews
+        </button>
+        <button data-filter="presentation" class="filter-btn inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors bg-cream-200 text-warm-gray-600 hover:bg-cream-100">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" />
+          </svg>
+          Presentations
+        </button>
+      </div>
 
-  <!-- Interviews Section -->
-  <section class="bg-cream-100 py-16 sm:py-20">
-    <div class="mx-auto max-w-5xl px-6">
-      <PageHeader title="Interviews" />
-
-      <div class="mt-12 grid gap-6 sm:grid-cols-2">
-        {interviews.map((item, i) => (
-          <div class="animate-on-scroll" style={`transition-delay: ${(i % 2) * 100}ms`}>
-            <VideoCard item={item} />
+      <!-- Cards Grid -->
+      <div class="mt-10 grid gap-6 sm:grid-cols-2" id="speaking-grid">
+        {allItems.map((item, i) => (
+          <div class="animate-on-scroll speaking-card" data-type={item.type} style={`transition-delay: ${(i % 2) * 100}ms`}>
+            <EventCard
+              event={item.event}
+              title={item.title}
+              date={item.date}
+              location={item.location}
+              role={item.role}
+              url={item.url}
+              type={item.type}
+            />
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Presentations Section -->
-  <section class="py-16 sm:py-20">
-    <div class="mx-auto max-w-5xl px-6">
-      <PageHeader title="Presentations" />
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.speaking-card');
 
-      <div class="mt-12 grid gap-6 sm:grid-cols-2">
-        {presentations.map((item, i) => (
-          <div class="animate-on-scroll" style={`transition-delay: ${i * 100}ms`}>
-            <EventCard event={item.event} title={item.title} date={item.date} location={item.location} url={item.url} titleSize="xl" />
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        // Update active button styling
+        buttons.forEach((b) => {
+          b.classList.remove('active', 'bg-warm-gray-800', 'text-cream-50');
+          b.classList.add('bg-cream-200', 'text-warm-gray-600', 'hover:bg-cream-100');
+        });
+        btn.classList.add('active', 'bg-warm-gray-800', 'text-cream-50');
+        btn.classList.remove('bg-cream-200', 'text-warm-gray-600', 'hover:bg-cream-100');
+
+        // Filter cards
+        cards.forEach((card) => {
+          const show = filter === 'all' || card.dataset.type === filter;
+          card.classList.toggle('hidden', !show);
+        });
+
+        // Re-trigger scroll animations for visible cards
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        cards.forEach((card) => {
+          if (!card.classList.contains('hidden')) {
+            card.classList.remove('is-visible');
+            observer.observe(card);
+          }
+        });
+      });
+    });
+  </script>
 </BaseLayout>
