@@ -9,8 +9,11 @@ export default defineConfig({
   redirects: {
     '/bio': '/',
     '/about': '/resume',
-    '/new-page': '/panels',
-    '/images': '/interviews',
+    '/new-page': '/speaking',
+    '/images': '/speaking',
+    '/panels': '/speaking',
+    '/interviews': '/speaking',
+    '/presentations': '/speaking',
   },
   integrations: [sitemap()],
   vite: {
