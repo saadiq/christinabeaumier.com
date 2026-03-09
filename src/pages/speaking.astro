@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import EventCard from '../components/EventCard.astro';
+import VideoCard from '../components/VideoCard.astro';
+import type { PanelItem, InterviewItem, PresentationItem } from '../types';
+import panelsData from '../content/panels.json';
+import interviewsData from '../content/interviews.json';
+import presentationsData from '../content/presentations.json';
+
+const panels = panelsData as PanelItem[];
+const interviews = interviewsData as InterviewItem[];
+const presentations = presentationsData as PresentationItem[];
+
+// Group panels by year
+const grouped = panels.reduce<Record<string, PanelItem[]>>((acc, panel) => {
+  const year = panel.date.match(/\d{4}/)?.[0] ?? 'Other';
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(panel);
+  return acc;
+}, {});
+
+const years = Object.keys(grouped).sort((a, b) => Number(b) - Number(a));
+---
+
+<BaseLayout title="Speaking & Media — Christina Beaumier" description="Speaking engagements, panel appearances, interviews, and presentations by Christina Beaumier at Cannes Lions, CES, Advertising Week, and other industry events.">
+  <!-- Panels Section -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <PageHeader title="Panels" />
+
+      {years.map((year) => (
+        <div class="mt-12">
+          <h2 class="animate-on-scroll mb-6 text-xl font-bold text-warm-gray-800">{year}</h2>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {grouped[year].map((item, i) => (
+              <div class="animate-on-scroll" style={`transition-delay: ${(i % 3) * 100}ms`}>
+                <EventCard event={item.event} title={item.title} date={item.date} location={item.location} role={item.role} url={item.url} />
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Interviews Section -->
+  <section class="bg-cream-100 py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <PageHeader title="Interviews" />
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        {interviews.map((item, i) => (
+          <div class="animate-on-scroll" style={`transition-delay: ${(i % 2) * 100}ms`}>
+            <VideoCard item={item} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Presentations Section -->
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <PageHeader title="Presentations" />
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        {presentations.map((item, i) => (
+          <div class="animate-on-scroll" style={`transition-delay: ${i * 100}ms`}>
+            <EventCard event={item.event} title={item.title} date={item.date} location={item.location} url={item.url} titleSize="xl" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
